@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+
+
+
+    int t ; // number of tests
+    cin >> t ;
+    while( t--){
+    int somme = 0 ;
+    string equation ;
+    cin >> equation ;
+    stringstream test(equation);
+    string segment;
+    vector<string> seglist; // creation d'un vecteur
+
+    while(std::getline(test, segment, '+'))
+
+         {
+             seglist.push_back(segment); // remplir un vector avec push_back
+
+         }
+
+    for(int i =0 ; i<seglist.size(); i++)
+    {
+        string j =seglist[i] ;
+        int a = stoi (seglist[i]);  //changer un string en int
+        somme = somme + a ;
+    }
+
+    cout << somme << endl ; 
+
+}
+}
