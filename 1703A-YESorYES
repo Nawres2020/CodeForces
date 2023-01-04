@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+
+    //En effet, il n'est pas possible d'effectuer simplement une comparaison
+    //de chaînes de caractères avec la simple utilisation des opérateurs habituels
+    //(==, !=, >= )
+
+
+    string S = "yes" ;
+    vector<string> v;   // creation d'un vecteur de type string
+    v.push_back(S);   // le mot "yes" est ajouter au vector v
+    // le vecteur v contient le mot yes , de different facons , "YES" , "yES" ..
+    for(int i = 0; i < S.size(); i++)
+            {
+            char c = S[i];
+            vector<string> tmpv;
+            for(string prevS : v){
+            string tmp(prevS.begin(), prevS.end());
+            if(islower(c))  // si l'element est minuscule
+            {
+                tmp[i] = toupper(c);  // convertir en maj
+            }
+            else if(isupper(c))
+            {
+                tmp[i] = tolower(c);
+            }
+            tmpv.push_back(tmp);
+            }
+                //concatenate
+                v.insert(v.end(), tmpv.begin(), tmpv.end()); }
+
+
+        int t ;
+        cin >> t ;
+        string mot ;
+        while(t--)
+        {
+        cin >> mot ;
+        int val = 0 ;
+        for(string prevS : v)
+        {
+            if (prevS == mot)
+                { val = val + 1 ; }
+        }
+        if ( val >= 1)
+        {
+            cout << "YES" << "\n";
+        }
+        else
+        {
+            cout << " NO" << "\n";
+        }
+        }
+
+
+}
