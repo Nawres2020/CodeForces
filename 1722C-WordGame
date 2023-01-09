@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include<string.h>
+#include<set>
+using namespace std;
+
+int main()
+{
+
+    int N = 3;
+    std::ios_base::sync_with_stdio(false);
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;     // nombre des mots ecrit pour chaque personnes
+        vector<set<string> > v(N);  // On a utilisé un ensemple
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < n; j++){
+               string s;
+               cin >> s;
+               v[i].insert(s);
+            }
+        }
+
+        vector<int> score(N, 0);  //initialiser un vecteur qui contient les scores de chaques personnes a 0
+        for(int i = 0; i < N; i++)
+            { // un iterator est utilisé comme pointeur  pour parcourir un vecteur
+
+            for(std::set<std::string>::iterator it = v[i].begin(); it != v[i].end(); it++)
+            {
+                string x = *it;
+                int cnt = 0 ;
+                for(int j = 0; j < N; j++){
+                    if(j == i){continue;}
+                    cnt = cnt + v[j].count(x);  //count , calcule le nombre d'accurence d'un string
+                }
+
+                if(cnt == 0)
+                    {score[i] =score[i]+3 ; }
+                else if(cnt == 1)
+                {score[i] = score[i] + 1;}
+            }
+        }
+
+        for(int i = 0; i < N; i++)
+            {cout << score[i] << endl ;
+        }
+    }
+
+
+
+
+
+
+}
